@@ -1,0 +1,15 @@
+{% block content %}
+  <h2>weather in {{ city }}</h2>
+  <p>lon: <strong>{{ lon }}</strong>
+      lat: <strong>{{ lat }}</strong>
+      min temp: <strong>{{ min_temp }}</strong>
+      max temp: <strong>{{ max_temp }}</strong>
+      sunrise: <strong>{{ sunrise }}</strong>
+      sunset: <strong>{{ sunset }}</strong>
+      timezone: <strong>{{ timezone }}</strong>
+  </p>
+{% endblock %}
+
+{% block button %}
+    <button>refresh</button>
+{% endblock %}
