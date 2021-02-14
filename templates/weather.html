@@ -1,15 +1,39 @@
-{% block content %}
-  <h2>weather in {{ city }}</h2>
-  <p>lon: <strong>{{ lon }}</strong>
-      lat: <strong>{{ lat }}</strong>
-      min temp: <strong>{{ min_temp }}</strong>
-      max temp: <strong>{{ max_temp }}</strong>
-      sunrise: <strong>{{ sunrise }}</strong>
-      sunset: <strong>{{ sunset }}</strong>
-      timezone: <strong>{{ timezone }}</strong>
-  </p>
+{% extends "base.html" %}
+{% block page_header %}
+<script>
+function refreshPage(){
+    window.location.reload();
+}
+</script>
+
 {% endblock %}
 
-{% block button %}
-    <button>refresh</button>
+{% block page_content %}
+    <h1>Weather App</h1>
+    <table>
+        <tr>
+            <td>------name-----</td>
+            <td>------lon------</td>
+            <td>------lat------</td>
+            <td>----timezone---</td>
+            <td>-----sunset----</td>
+            <td>-----sunrise---</td>
+            <td>----min_temp---</td>
+            <td>----max_temp---</td>
+            <td>pull fresh data</td>
+        </tr>
+        {% for city in cities %}
+            <tr>
+                <td>{{ city.city_name }}</td>
+                <td>{{ city.location.longitude }}</td>
+                <td>{{ city.location.latitude }}</td>
+                <td>{{ city.location.get_timezone }}</td>
+                <td>{{ city.get_sunset }}</td>
+                <td>{{ city.get_sunrise }}</td>
+                <td>{{ city.min_temp }}</td>
+                <td>{{ city.max_temp }}</td>
+                <td><button onclick="refreshPage()">reload</button></td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
